@@ -19,7 +19,8 @@ file từ server A về với max speed là 2MB/s
   + <img src="https://i.imgur.com/57cIQ71.png">
     ==> <img src="https://i.imgur.com/S3EdtXf.png">
   + Điều này có nghĩa là : nếu request của client có /download thì nginx sẽ redirect đến context location /download và sẽ 
-  bị chi phối bới các directives trong này, ở đây có directives: **limit_rate 2024k;** => giới hạn bandwidth của người dùng khi download x
+  bị chi phối bới các directives trong này, ở đây có directives: **limit_rate 2024k;** => giới hạn bandwidth của người dùng khi download xuống tối đa speed là 2024k;
+  
   + Sau đó ta sẽ download file trong thư mục download bằng wget
   + <img src="https://i.imgur.com/k6X9aNh.png">
 - Kết quả là : 
