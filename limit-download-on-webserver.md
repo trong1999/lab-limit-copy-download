@@ -31,6 +31,18 @@ file từ server A về với max speed là 2MB/s
   + **yum install iptables-services**
   + **service start iptables**
   + **service enable iptables**
+- Nếu kiểm tra port 80 (http service) chưa được open thì 
+  + **iptables -A INPUT -i ens38 -p tcp --dport 80 -j ACCEPT**
+- Sau đó kiểm tra rule của iptables
+  + iptables -L
+  + <img src="https://i.imgur.com/7xxlEM7.png">
+  + Như trong hình ta thấy nó đang chặng ping trên chain INPUT và FORWARD thì nó sẽ như thế nào?
+  + <img src="https://i.imgur.com/p8fUeZh.png">
+  + Nó sẽ không thể conncection đến được server
+  + Sau đó ta sẽ delete các rule reject đi 
+  + **iptables -L --line-numbers**
+  + **iptables -D INPUT 5**
+  + **iptables -D FORWARD 1**
 - Sau đó sẽ xóa tất cả các rules của interface ens38
   + **/sbin/tc qdisc del dev ens38 root**
 - Turn on quy tắc hàng đợt
